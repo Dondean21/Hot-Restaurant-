@@ -1,15 +1,15 @@
 var express = require("express");
 var path = require("path");
 
-var PORT = 3000;
 var app = express();
+var PORT = 3000;
 
-var table;
+var table = [];
+
+//==================================================
 
 app.use(express.urlencoded({ extended: true}));
 app.use(express.json());
-
-app.listen(port, () => console.log('testing'))
 
 
 app.get("/", function(req, res) {
@@ -20,8 +20,8 @@ app.get("/api/tables", function(req, res) {
     res.sendFile(path.join(__dirname, "tables.html"));
   });
 
-// Create New Characters - takes in JSON input
-app.post("/tables", function(req, res) {
+// Create New Tables - takes in JSON input
+app.post("/api/tables", function(req, res) {
 
   var newTable = req.body;
 
@@ -31,6 +31,9 @@ app.post("/tables", function(req, res) {
 
   res.json(newTable);
 });
+
+
+
 
 // Starts the server to begin listening
 // =============================================================
